@@ -20,6 +20,7 @@ export default function CodeGenerator() {
       const camelEntity = entity.charAt(0).toLowerCase() + entity.slice(1);
       const repoContent = `package ${packagePath}.repository;
 
+import ${packagePath}.entity.${entity};
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface I${entity}Repository extends JpaRepository<${entity}, Long> { 
@@ -105,7 +106,7 @@ public class ${entity}Service implements I${entity}Service {
               <Field
                 as="textarea"
                 name="entities"
-                placeholder="Ví dụ: User, Role_Admin"
+                placeholder="Ví dụ: User, Role, Product, ..."
                 className="w-full p-2 border rounded"
               />
               <ErrorMessage
@@ -161,6 +162,10 @@ public class ${entity}Service implements I${entity}Service {
           <li>
             Dự án nên là <strong>Spring Boot</strong> sử dụng{" "}
             <strong>Spring Data JPA</strong>.
+          </li>
+          <li>
+            Tên <strong>Package</strong> chứa các <code>entity</code> là{" "}
+            <strong>entity</strong>.
           </li>
           <li>
             Tên entity phải viết hoa chữ cái đầu (ví dụ: <code>User</code>,{" "}
