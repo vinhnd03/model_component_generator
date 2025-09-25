@@ -41,7 +41,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ${entity}Service implements I${entity}Service {
-      private I${entity}Repository ${camelEntity}Repository;
+      private final I${entity}Repository ${camelEntity}Repository;
       public ${entity}Service (I${entity}Repository ${camelEntity}Repository){
         this.${camelEntity}Repository = ${camelEntity}Repository;
       }
