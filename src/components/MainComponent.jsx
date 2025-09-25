@@ -53,7 +53,7 @@ public class ${entity}Service implements I${entity}Service {
       zip.file(`service/impl/${entity}Service.java`, serviceImpl);
     });
 
-    zip.generateAsync({ type: "blob" }).then((content) => {
+    return zip.generateAsync({ type: "blob" }).then((content) => {
       saveAs(content, "generated-code.zip");
     });
   };
@@ -80,7 +80,11 @@ public class ${entity}Service implements I${entity}Service {
       <Formik
         initialValues={{ path: "", entities: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values) => generateFiles(values)}
+        onSubmit={(values, { setSubmitting }) => {
+          generateFiles(values).finally(() => {
+            setSubmitting(false); // reset trạng thái nút
+          });
+        }}
         validateOnChange={true}
         validateOnBlur={true}
       >
